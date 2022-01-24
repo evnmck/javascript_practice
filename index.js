@@ -5,7 +5,7 @@ import './style.css';
 const appDiv = document.getElementById('app');
 appDiv.innerHTML = `<h1>JS Starter</h1>`;
 
-function a() {
+async function a() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve('Enrolled in');
@@ -13,16 +13,22 @@ function a() {
   });
 }
 
-function b() {
+async function b() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve('this student is taking 15 credits');
-    }, 300);
+    }, 3000);
   });
 }
 
-b();
-a();
+async function runner() {
+  const b_result = await b().catch((message) => {});
+  console.log(b_result);
+  const a_result = await a();
+  console.log(a_result);
+}
+
+runner();
 
 //1 b
 //2 a
